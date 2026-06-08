@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diamond Employee Management System - Comprehensive workforce management for the diamond industry">
+    <title>DEMS | Diamond Employee Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ==================== LOGIN PAGE ==================== -->
+    <div id="login-page" class="page active">
+        <div class="login-background">
+            <div class="diamond-particle" style="--x: 15%; --y: 20%; --delay: 0s; --duration: 6s;"></div>
+            <div class="diamond-particle" style="--x: 75%; --y: 30%; --delay: 1s; --duration: 8s;"></div>
+            <div class="diamond-particle" style="--x: 45%; --y: 70%; --delay: 2s; --duration: 7s;"></div>
+            <div class="diamond-particle" style="--x: 85%; --y: 80%; --delay: 0.5s; --duration: 9s;"></div>
+            <div class="diamond-particle" style="--x: 25%; --y: 85%; --delay: 3s; --duration: 6.5s;"></div>
+            <div class="diamond-particle" style="--x: 60%; --y: 15%; --delay: 1.5s; --duration: 7.5s;"></div>
+        </div>
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-logo">
+                    <div class="diamond-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 4L58 24L32 60L6 24L32 4Z" fill="url(#diamondGrad)" stroke="url(#diamondStroke)" stroke-width="1.5"/>
+                            <path d="M6 24H58" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                            <path d="M32 4L22 24L32 60" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            <path d="M32 4L42 24L32 60" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            <defs>
+                                <linearGradient id="diamondGrad" x1="32" y1="4" x2="32" y2="60">
+                                    <stop offset="0%" stop-color="#a8d8ea"/>
+                                    <stop offset="50%" stop-color="#5b9bd5"/>
+                                    <stop offset="100%" stop-color="#2e75b6"/>
+                                </linearGradient>
+                                <linearGradient id="diamondStroke" x1="6" y1="4" x2="58" y2="60">
+                                    <stop offset="0%" stop-color="#cde4f4"/>
+                                    <stop offset="100%" stop-color="#4a90c4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h1 class="login-title">DEMS</h1>
+                    <p class="login-subtitle">Diamond Employee Management System</p>
+                </div>
+                <form id="login-form" class="login-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    <button type="submit" id="login-btn" class="btn btn-primary btn-login">
+                        <span>Sign In</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
+                <p class="login-footer">© 2026 Diamond EMS. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN APP LAYOUT ==================== -->
+    <div id="app-layout" class="app-layout hidden">
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 4L58 24L32 60L6 24L32 4Z" fill="url(#sidebarDiamondGrad)" stroke="url(#sidebarDiamondStroke)" stroke-width="1.5"/>
+                        <path d="M6 24H58" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                        <path d="M32 4L22 24L32 60" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                        <path d="M32 4L42 24L32 60" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                        <defs>
+                            <linearGradient id="sidebarDiamondGrad" x1="32" y1="4" x2="32" y2="60">
+                                <stop offset="0%" stop-color="#a8d8ea"/>
+                                <stop offset="100%" stop-color="#5b9bd5"/>
+                            </linearGradient>
+                            <linearGradient id="sidebarDiamondStroke" x1="6" y1="4" x2="58" y2="60">
+                                <stop offset="0%" stop-color="#cde4f4"/>
+                                <stop offset="100%" stop-color="#4a90c4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="sidebar-brand">DEMS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active" data-page="dashboard" id="nav-dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-link" data-page="employees" id="nav-employees">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                    <span>Employee Management</span>
+                </a>
+                <a href="#" class="nav-link" data-page="attendance" id="nav-attendance">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14l2 2 4-4"/></svg>
+                    <span>Attendance</span>
+                </a>
+                <a href="#" class="nav-link" data-page="payroll" id="nav-payroll">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                    <span>Payroll</span>
+                </a>
+                <a href="#" class="nav-link" data-page="reports" id="nav-reports">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 118 2.83"/><path d="M22 12A10 10 0 0012 2v10z"/></svg>
+                    <span>Reports</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-link logout-link" id="logout-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Toggle -->
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h2 id="page-title" class="page-title">Dashboard</h2>
+                    <p id="page-breadcrumb" class="page-breadcrumb">Home / Dashboard</p>
+                </div>
+                <div class="top-bar-right">
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" placeholder="Search..." id="global-search">
+                    </div>
+                    <button class="notification-btn" id="notification-btn" aria-label="Notifications">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="user-profile" id="user-profile">
+                        <div class="user-avatar">RA</div>
+                        <div class="user-info">
+                            <span class="user-name">Rajesh A.</span>
+                            <span class="user-role">Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ==================== DASHBOARD VIEW ==================== -->
+            <section id="view-dashboard" class="view active">
+                <div class="metrics-grid">
+                    <div class="metric-card metric-employees">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value" data-target="120">0</span>
+                            <span class="metric-label">Total Employees</span>
+                        </div>
+                        <div class="metric-trend trend-up">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                            <span>+8%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card metric-present">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value" data-target="105">0</span>
+                            <span class="metric-label">Present Today</span>
+                        </div>
+                        <div class="metric-trend trend-up">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                            <span>87.5%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card metric-production">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value" data-target="80" data-suffix="%">0</span>
+                            <span class="metric-label">Production Status</span>
+                        </div>
+                        <div class="metric-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card metric-tasks">
+                        <div class="metric-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-value" data-target="12">0</span>
+                            <span class="metric-label">Pending Tasks</span>
+                        </div>
+                        <div class="metric-trend trend-down">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+                            <span>-3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Attendance Overview -->
+                    <div class="card card-attendance-overview">
+                        <div class="card-header">
+                            <h3>Attendance Overview</h3>
+                            <select class="card-filter" id="attendance-filter">
+                                <option>This Week</option>
+                                <option>This Month</option>
+                                <option>Last Month</option>
+                            </select>
+                        </div>
+                        <div class="card-body">
+                            <div class="attendance-chart" id="attendance-chart">
+                                <div class="chart-bar-group" data-day="Mon">
+                                    <div class="chart-bar" style="--height: 92%;" data-value="92%"><div class="bar-fill"></div></div>
+                                    <span class="chart-label">Mon</span>
+                                </div>
+                                <div class="chart-bar-group" data-day="Tue">
+                                    <div class="chart-bar" style="--height: 88%;" data-value="88%"><div class="bar-fill"></div></div>
+                                    <span class="chart-label">Tue</span>
+                                </div>
+                                <div class="chart-bar-group" data-day="Wed">
+                                    <div class="chart-bar" style="--height: 95%;" data-value="95%"><div class="bar-fill"></div></div>
+                                    <span class="chart-label">Wed</span>
+                                </div>
+                                <div class="chart-bar-group" data-day="Thu">
+                                    <div class="chart-bar" style="--height: 85%;" data-value="85%"><div class="bar-fill"></div></div>
+                                    <span class="chart-label">Thu</span>
+                                </div>
+                                <div class="chart-bar-group" data-day="Fri">
+                                    <div class="chart-bar" style="--height: 90%;" data-value="90%"><div class="bar-fill"></div></div>
+                                    <span class="chart-label">Fri</span>
+                                </div>
+                                <div class="chart-bar-group" data-day="Sat">
+                                    <div class="chart-bar" style="--height: 78%;" data-value="78%"><div class="bar-fill"></div></div>
+                                    <span class="chart-label">Sat</span>
+                                </div>
+                            </div>
+                            <div class="attendance-summary">
+                                <div class="summary-item">
+                                    <span class="summary-dot dot-present"></span>
+                                    <span>Present: 105</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-dot dot-absent"></span>
+                                    <span>Absent: 10</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-dot dot-halfday"></span>
+                                    <span>Half-day: 5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="card card-recent-activities">
+                        <div class="card-header">
+                            <h3>Recent Activities</h3>
+                            <a href="#" class="card-link">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="activity-feed">
+                                <div class="activity-item">
+                                    <div class="activity-icon activity-icon-add">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>Amit Patel</strong> was added to the <strong>Cutting</strong> department</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon activity-icon-salary">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>Salary slips generated for <strong>May 2026</strong></p>
+                                        <span class="activity-time">5 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon activity-icon-attendance">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>Attendance marked for <strong>June 4, 2026</strong></p>
+                                        <span class="activity-time">Today, 9:15 AM</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon activity-icon-report">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p>Production report submitted by <strong>Dept. Polishing</strong></p>
+                                        <span class="activity-time">Yesterday, 4:30 PM</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon activity-icon-edit">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                    </div>
+                                    <div class="activity-content">
+                                        <p><strong>Priya Sharma</strong>'s record updated — Department changed</p>
+                                        <span class="activity-time">Yesterday, 2:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Department Distribution -->
+                    <div class="card card-dept-distribution">
+                        <div class="card-header">
+                            <h3>Department Distribution</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="dept-chart">
+                                <div class="donut-chart" id="donut-chart">
+                                    <svg viewBox="0 0 200 200">
+                                        <circle cx="100" cy="100" r="80" fill="none" stroke="#e8edf2" stroke-width="24"/>
+                                        <circle class="donut-segment" cx="100" cy="100" r="80" fill="none" stroke="#5b9bd5" stroke-width="24" stroke-dasharray="150.8 352" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+                                        <circle class="donut-segment" cx="100" cy="100" r="80" fill="none" stroke="#2e75b6" stroke-width="24" stroke-dasharray="125.7 377.1" stroke-dashoffset="-150.8" transform="rotate(-90 100 100)"/>
+                                        <circle class="donut-segment" cx="100" cy="100" r="80" fill="none" stroke="#a8d8ea" stroke-width="24" stroke-dasharray="100.5 402.3" stroke-dashoffset="-276.5" transform="rotate(-90 100 100)"/>
+                                        <circle class="donut-segment" cx="100" cy="100" r="80" fill="none" stroke="#7fb3d3" stroke-width="24" stroke-dasharray="125.7 377.1" stroke-dashoffset="-377" transform="rotate(-90 100 100)"/>
+                                        <text x="100" y="95" text-anchor="middle" class="donut-center-text">120</text>
+                                        <text x="100" y="115" text-anchor="middle" class="donut-center-label">Total</text>
+                                    </svg>
+                                </div>
+                                <div class="dept-legend">
+                                    <div class="legend-item"><span class="legend-color" style="background:#5b9bd5"></span><span>Cutting (30%)</span></div>
+                                    <div class="legend-item"><span class="legend-color" style="background:#2e75b6"></span><span>Polishing (25%)</span></div>
+                                    <div class="legend-item"><span class="legend-color" style="background:#a8d8ea"></span><span>Grading (20%)</span></div>
+                                    <div class="legend-item"><span class="legend-color" style="background:#7fb3d3"></span><span>Admin & Others (25%)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== EMPLOYEE MANAGEMENT VIEW ==================== -->
+            <section id="view-employees" class="view">
+                <div class="view-header">
+                    <div class="view-header-left">
+                        <div class="search-filter-group">
+                            <div class="search-box table-search">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                <input type="text" id="employee-search" placeholder="Search employees...">
+                            </div>
+                            <select class="filter-select" id="dept-filter">
+                                <option value="">All Departments</option>
+                                <option value="Cutting">Cutting</option>
+                                <option value="Polishing">Polishing</option>
+                                <option value="Grading">Grading</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="add-employee-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        <span>Add New Employee</span>
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="table-container">
+                        <table class="data-table" id="employee-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Contact</th>
+                                    <th>Salary Type</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employee-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-footer">
+                        <span class="table-info" id="table-info">Showing 1–10 of 12 employees</span>
+                        <div class="pagination">
+                            <button class="page-btn" disabled>‹</button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">›</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== ATTENDANCE VIEW ==================== -->
+            <section id="view-attendance" class="view">
+                <div class="view-header">
+                    <div class="view-header-left">
+                        <div class="date-picker-group">
+                            <label>Date:</label>
+                            <input type="date" id="attendance-date" class="date-input" value="2026-06-04">
+                        </div>
+                        <select class="filter-select" id="attendance-dept-filter">
+                            <option value="">All Departments</option>
+                            <option value="Cutting">Cutting</option>
+                            <option value="Polishing">Polishing</option>
+                            <option value="Grading">Grading</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="save-attendance-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                        <span>Save Attendance</span>
+                    </button>
+                </div>
+
+                <div class="attendance-stats">
+                    <div class="att-stat att-present">
+                        <span class="att-stat-value" id="att-present-count">0</span>
+                        <span class="att-stat-label">Present</span>
+                    </div>
+                    <div class="att-stat att-absent">
+                        <span class="att-stat-value" id="att-absent-count">0</span>
+                        <span class="att-stat-label">Absent</span>
+                    </div>
+                    <div class="att-stat att-halfday">
+                        <span class="att-stat-value" id="att-halfday-count">0</span>
+                        <span class="att-stat-label">Half-day</span>
+                    </div>
+                    <div class="att-stat att-unmarked">
+                        <span class="att-stat-value" id="att-unmarked-count">0</span>
+                        <span class="att-stat-label">Unmarked</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="table-container">
+                        <table class="data-table" id="attendance-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Employee Name</th>
+                                    <th>Department</th>
+                                    <th>Mark Attendance</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendance-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== PAYROLL VIEW ==================== -->
+            <section id="view-payroll" class="view">
+                <div class="view-header">
+                    <div class="view-header-left">
+                        <div class="date-picker-group">
+                            <label>Month:</label>
+                            <input type="month" id="payroll-month" class="date-input" value="2026-06">
+                        </div>
+                        <select class="filter-select" id="payroll-type-filter">
+                            <option value="">All Pay Types</option>
+                            <option value="Fixed">Fixed</option>
+                            <option value="Daily Wage">Daily Wage</option>
+                            <option value="Piece-Based">Piece-Based</option>
+                        </select>
+                    </div>
+                    <div class="view-header-actions">
+                        <button class="btn btn-outline" id="export-payroll-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span>Export</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="payroll-summary-cards">
+                    <div class="payroll-sum-card">
+                        <span class="payroll-sum-label">Total Payroll</span>
+                        <span class="payroll-sum-value">₹18,45,000</span>
+                    </div>
+                    <div class="payroll-sum-card">
+                        <span class="payroll-sum-label">Fixed Salaries</span>
+                        <span class="payroll-sum-value">₹8,40,000</span>
+                    </div>
+                    <div class="payroll-sum-card">
+                        <span class="payroll-sum-label">Daily Wages</span>
+                        <span class="payroll-sum-value">₹4,65,000</span>
+                    </div>
+                    <div class="payroll-sum-card">
+                        <span class="payroll-sum-label">Piece-Based</span>
+                        <span class="payroll-sum-value">₹5,40,000</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="table-container">
+                        <table class="data-table" id="payroll-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Employee Name</th>
+                                    <th>Department</th>
+                                    <th>Pay Type</th>
+                                    <th>Working Days</th>
+                                    <th>Gross Pay</th>
+                                    <th>Deductions</th>
+                                    <th>Net Pay</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payroll-tbody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== REPORTS VIEW ==================== -->
+            <section id="view-reports" class="view">
+                <div class="view-header">
+                    <div class="view-header-left">
+                        <div class="date-picker-group">
+                            <label>Period:</label>
+                            <select class="filter-select" id="report-period">
+                                <option>This Month</option>
+                                <option>Last Month</option>
+                                <option>This Quarter</option>
+                                <option>This Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reports-grid">
+                    <!-- Attendance Report Card -->
+                    <div class="report-card">
+                        <div class="report-card-header">
+                            <div class="report-icon report-icon-attendance">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            </div>
+                            <h3>Attendance Report</h3>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-stat-row">
+                                <span>Average Attendance Rate</span>
+                                <span class="report-stat-value good">88.5%</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Total Working Days</span>
+                                <span class="report-stat-value">26</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Most Absent Department</span>
+                                <span class="report-stat-value warning">Grading</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Perfect Attendance</span>
+                                <span class="report-stat-value good">42 employees</span>
+                            </div>
+                            <div class="report-mini-chart">
+                                <div class="mini-bars">
+                                    <div class="mini-bar" style="--h: 92%;" title="Week 1: 92%"></div>
+                                    <div class="mini-bar" style="--h: 88%;" title="Week 2: 88%"></div>
+                                    <div class="mini-bar" style="--h: 85%;" title="Week 3: 85%"></div>
+                                    <div class="mini-bar highlight" style="--h: 90%;" title="Week 4: 90%"></div>
+                                </div>
+                                <span class="mini-chart-label">Weekly Trend</span>
+                            </div>
+                        </div>
+                        <div class="report-card-footer">
+                            <button class="btn btn-outline btn-sm" onclick="alert('Attendance report would be downloaded as PDF.')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Production Report Card -->
+                    <div class="report-card">
+                        <div class="report-card-header">
+                            <div class="report-icon report-icon-production">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <h3>Production Report</h3>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-stat-row">
+                                <span>Diamonds Processed</span>
+                                <span class="report-stat-value">1,248</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Completion Rate</span>
+                                <span class="report-stat-value good">80%</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Quality Pass Rate</span>
+                                <span class="report-stat-value good">96.2%</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Top Producer</span>
+                                <span class="report-stat-value">Cutting Dept.</span>
+                            </div>
+                            <div class="report-mini-chart">
+                                <div class="mini-bars">
+                                    <div class="mini-bar" style="--h: 75%;" title="Week 1: 75%"></div>
+                                    <div class="mini-bar" style="--h: 82%;" title="Week 2: 82%"></div>
+                                    <div class="mini-bar" style="--h: 78%;" title="Week 3: 78%"></div>
+                                    <div class="mini-bar highlight" style="--h: 80%;" title="Week 4: 80%"></div>
+                                </div>
+                                <span class="mini-chart-label">Weekly Output</span>
+                            </div>
+                        </div>
+                        <div class="report-card-footer">
+                            <button class="btn btn-outline btn-sm" onclick="alert('Production report would be downloaded as PDF.')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Payroll Summary Report -->
+                    <div class="report-card">
+                        <div class="report-card-header">
+                            <div class="report-icon report-icon-payroll">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                            </div>
+                            <h3>Payroll Summary</h3>
+                        </div>
+                        <div class="report-body">
+                            <div class="report-stat-row">
+                                <span>Total Disbursed</span>
+                                <span class="report-stat-value">₹18,45,000</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Avg. Salary</span>
+                                <span class="report-stat-value">₹15,375</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Pending Payments</span>
+                                <span class="report-stat-value warning">₹2,10,000</span>
+                            </div>
+                            <div class="report-stat-row">
+                                <span>Overtime Paid</span>
+                                <span class="report-stat-value">₹85,000</span>
+                            </div>
+                            <div class="report-mini-chart">
+                                <div class="mini-bars">
+                                    <div class="mini-bar" style="--h: 88%;" title="Mar: ₹17.2L"></div>
+                                    <div class="mini-bar" style="--h: 92%;" title="Apr: ₹18.0L"></div>
+                                    <div class="mini-bar" style="--h: 85%;" title="May: ₹17.8L"></div>
+                                    <div class="mini-bar highlight" style="--h: 95%;" title="Jun: ₹18.45L"></div>
+                                </div>
+                                <span class="mini-chart-label">Monthly Payroll</span>
+                            </div>
+                        </div>
+                        <div class="report-card-footer">
+                            <button class="btn btn-outline btn-sm" onclick="alert('Payroll summary would be downloaded as PDF.')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Department Performance -->
+                    <div class="report-card">
+                        <div class="report-card-header">
+                            <div class="report-icon report-icon-dept">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 118 2.83"/><path d="M22 12A10 10 0 0012 2v10z"/></svg>
+                            </div>
+                            <h3>Department Performance</h3>
+                        </div>
+                        <div class="report-body">
+                            <div class="dept-performance-list">
+                                <div class="dept-perf-item">
+                                    <div class="dept-perf-info">
+                                        <span class="dept-perf-name">Cutting</span>
+                                        <span class="dept-perf-value">92%</span>
+                                    </div>
+                                    <div class="progress-bar"><div class="progress-fill filled" style="width: 92%; background: #5b9bd5;"></div></div>
+                                </div>
+                                <div class="dept-perf-item">
+                                    <div class="dept-perf-info">
+                                        <span class="dept-perf-name">Polishing</span>
+                                        <span class="dept-perf-value">87%</span>
+                                    </div>
+                                    <div class="progress-bar"><div class="progress-fill filled" style="width: 87%; background: #2e75b6;"></div></div>
+                                </div>
+                                <div class="dept-perf-item">
+                                    <div class="dept-perf-info">
+                                        <span class="dept-perf-name">Grading</span>
+                                        <span class="dept-perf-value">78%</span>
+                                    </div>
+                                    <div class="progress-bar"><div class="progress-fill filled" style="width: 78%; background: #a8d8ea;"></div></div>
+                                </div>
+                                <div class="dept-perf-item">
+                                    <div class="dept-perf-info">
+                                        <span class="dept-perf-name">Admin</span>
+                                        <span class="dept-perf-value">95%</span>
+                                    </div>
+                                    <div class="progress-bar"><div class="progress-fill filled" style="width: 95%; background: #7fb3d3;"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="report-card-footer">
+                            <button class="btn btn-outline btn-sm" onclick="alert('Department report would be downloaded as PDF.')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==================== ADD EMPLOYEE MODAL ==================== -->
+    <div id="employee-modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Employee</h3>
+                <button class="modal-close" id="modal-close-btn" aria-label="Close modal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <form id="employee-form" class="modal-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emp-id">Employee ID</label>
+                        <input type="text" id="emp-id" placeholder="e.g., EMP-013" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-name">Full Name</label>
+                        <input type="text" id="emp-name" placeholder="Enter full name" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emp-department">Department</label>
+                        <select id="emp-department" required>
+                            <option value="">Select Department</option>
+                            <option value="Cutting">Cutting</option>
+                            <option value="Polishing">Polishing</option>
+                            <option value="Grading">Grading</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-salary-type">Salary Type</label>
+                        <select id="emp-salary-type" required>
+                            <option value="">Select Salary Type</option>
+                            <option value="Fixed">Fixed</option>
+                            <option value="Daily Wage">Daily Wage</option>
+                            <option value="Piece-Based">Piece-Based</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="emp-contact">Contact Number</label>
+                        <input type="tel" id="emp-contact" placeholder="Enter contact number">
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-status">Status</label>
+                        <select id="emp-status">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline" id="modal-cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="modal-save-btn">Save Employee</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
