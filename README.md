@@ -13,8 +13,10 @@ The project is a frontend-based web application and is deployed using
 https://bhavikaacharya.github.io/dems/
 
 ## 📸 Dashboard Preview
+<img width="1915" height="970" alt="dashboard" src="https://github.com/user-attachments/assets/6c416650-25b3-4f05-8490-f9cd7741051a" />
 
-![Diamond Employee Management System Dashboard](./assets/dashboard.png)
+
+
 
 ## ✨ Features
 
@@ -122,14 +124,13 @@ DEMS/
 ├── css/
 │   └── style.css
 ├── js/
-│   └── script.js
+│   └── app.js
 ├── assets/
 │   └── dashboard.png
 └── README.md
 ```
 
-> Update the folder names above if your actual project structure is
-> different.
+
 
 ## 🚀 Run Locally
 
